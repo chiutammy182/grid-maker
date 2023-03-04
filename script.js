@@ -5,7 +5,12 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    //alert("Clicked Add Row"); // Replace this line with your code.
+    let table = document.getElementById("grid");  // finds the <table> element with id="grid"
+    let row = table.insertRow(numRows);  // creates a new <tr> element 
+    numRows++;   // increase the number of rows tracker variable
+    for(let i = 0;i<=numCols;i++) // inserts a new cell(to create a row)
+        row.insertCell(i);         // based on the numCols   
 }
 
 // Add a column
