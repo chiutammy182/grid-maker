@@ -5,50 +5,64 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    let table = document.getElementById("grid");  // finds the <table> element with id="grid"
-    let row = table.insertRow(numRows);  // creates a new <tr> element 
-    numRows++;   // increase the number of rows tracker variable
-    if(numCols===0)     // new row is added along with new cell(column)
+    let table = document.getElementById("grid");      // finds the <table> element with id="grid"
+    let row = table.insertRow(numRows);               // creates a new <tr> element 
+    numRows++;                                        // increase the number of rows tracker variable
+    if(numCols===0)                                   // new row is added along with new cell(column)
         numCols++;
-    for(let i = 0;i<numCols;i++) // inserts a new cell(to create a row)
-        row.insertCell(i);         // based on the numCols   
+    for(let i = 0;i<numCols;i++)                      // inserts a new cell(to create a row)
+        row.insertCell(i);                            // based on the numCols  
+    let tdList = document.querySelectorAll("td");     // list of td elements
+    for(let i = 0;i<tdList.length;i++)
+    {
+        tdList[i].onclick = function(){               // if cell is clicked on then change to colorSelected
+            this.style.backgroundColor = colorSelected;
+        }
+    }
 }
 
 // Add a column
 function addC() {
-    let table = document.getElementById("grid");  // finds the <table> element with id="grid"
-    if(numRows===0)  // if no row exists yet, create one and add a cell. 
+    let table = document.getElementById("grid");      // finds the <table> element with id="grid"
+    if(numRows===0)                                   // if no row exists yet, create one and add a cell. 
     {
         addR();
         return;
     }
     // else add a cell to each existing row(tr)
-    let rows = document.querySelectorAll("tr");   // list of tr elements
+    let rows = document.querySelectorAll("tr");       // list of tr elements
     for(let i =0;i<rows.length;i++) 
         rows[i].insertCell(numCols);
     numCols++;
+    let tdList = document.querySelectorAll("td");    // list of td elements
+    for(let i = 0;i<tdList.length;i++)
+    {
+        tdList[i].onclick = function(){              // if cell is cliked on then change color to colorSelected
+            this.style.backgroundColor = colorSelected;
+        }
+    }
 }
 
 // Remove a row
 function removeR() {
     if(numRows<=0)
         return;
-    let table = document.getElementById("grid");  // finds the <table> element with id="grid"
-    table.deleteRow(numRows-1);     // deletes the last row from the table
-    numRows--;                      // update the numRows
+    let table = document.getElementById("grid");     // finds the <table> element with id="grid"
+    table.deleteRow(numRows-1);                      // deletes the last row from the table
+    numRows--;                                       // update the numRows
     if(numRows===0)
         numCols=0;
 }
 
 // Remove a column
 function removeC() {
-    if(numCols<=0)      // no columns to remove
+    if(numCols<=0)                                   // no columns to remove
         return;
-    let rows = document.querySelectorAll("tr");   // list of tr elements
-    for(let i =0;i<rows.length;i++)   // delete the last cell in each row
+    let rows = document.querySelectorAll("tr");      // list of tr elements
+    for(let i =0;i<rows.length;i++)                  // delete the last cell in each row
         rows[i].deleteCell(numCols-1);
     numCols--;
-    if(numCols===0)     // if all columns are removed(no cells left) then delete the tr elements
+    if(numCols===0)                                  // if all columns are removed(no cells left) then delete the tr elements
         for(let i =numRows-1;i>=0;i--)
             removeR();
 }
@@ -61,24 +75,24 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    cells = document.querySelectorAll("td");  // list of all td elements
+    let cells = document.querySelectorAll("td");    // list of all td elements
     for(let i =0;i<cells.length;i++)
-        if(cells[i].style.backgroundColor ==="")  // the background color is ""(when no color)
+        if(cells[i].style.backgroundColor ==="")    // the background color is ""(when no color)
             cells[i].style.backgroundColor = colorSelected;
 }
 
 // Fill all cells
 function fillAll(){
-    cells = document.querySelectorAll("td");  // list of all td elements
+    let cells = document.querySelectorAll("td");           // list of all td elements
     for(let i =0;i<cells.length;i++)
         cells[i].style.backgroundColor = colorSelected;   // overwrite all cells' color
 }
 
 // Clear all cells
 function clearAll(){
-    cells = document.querySelectorAll("td");  // list of all td elements
+    let cells = document.querySelectorAll("td");         // list of all td elements
     for(let i =0;i<cells.length;i++)
-        cells[i].style.backgroundColor = "";  // clear the color of all cells 
+        cells[i].style.backgroundColor = "";            // clear the color of all cells 
 }
 
-// color a single cell, by clicking on the cell, and change its color to the selected color
+
