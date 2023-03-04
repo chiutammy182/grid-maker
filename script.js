@@ -17,12 +17,9 @@ function addR() {
 // Add a column
 function addC() {
     let table = document.getElementById("grid");  // finds the <table> element with id="grid"
-    if(numRows===0)  // if no row exists yet, create one and add a cell. Update numRows and numCols
+    if(numRows===0)  // if no row exists yet, create one and add a cell. 
     {
-        let row = table.insertRow(numRows);
-        row.insertCell(0);
-        numRows++;
-        numCols++
+        addR();
         return;
     }
     // else add a cell to each existing row(tr)
