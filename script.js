@@ -69,10 +69,14 @@ function fillU(){
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    cells = document.querySelectorAll("td");  // list of all td elements
+    for(let i =0;i<cells.length;i++)
+        cells[i].style.backgroundColor = colorSelected;   // overwrite all cells' color
 }
 
 // Clear all cells
 function clearAll(){
     alert("Clicked Clear All"); // Replace this line with your code.
 }
+
+// color a single cell, by clicking on the cell, and change its color to the selected color
