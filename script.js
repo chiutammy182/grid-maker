@@ -31,7 +31,9 @@ function addC() {
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    let table = document.getElementById("grid");  // finds the <table> element with id="grid"
+    table.deleteRow(numRows-1);     // deletes the last row from the table
+    numRows--;                      // update the numRows
 }
 
 // Remove a column
