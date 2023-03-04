@@ -31,14 +31,26 @@ function addC() {
 
 // Remove a row
 function removeR() {
+    if(numRows<=0)
+        return;
     let table = document.getElementById("grid");  // finds the <table> element with id="grid"
     table.deleteRow(numRows-1);     // deletes the last row from the table
     numRows--;                      // update the numRows
+    if(numRows===0)
+        numCols=0;
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    if(numCols<=0)      // no columns to remove
+        return;
+    let rows = document.querySelectorAll("tr");   // list of tr elements
+    for(let i =0;i<rows.length;i++)   // delete the last cell in each row
+        rows[i].deleteCell(numCols-1);
+    numCols--;
+    if(numCols===0)     // if all columns are removed(no cells left) then delete the tr elements
+        for(let i =numRows-1;i>=0;i--)
+            removeR();
 }
 
 // Set global variable for selected color
